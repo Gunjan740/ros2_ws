@@ -1,0 +1,4 @@
+[31mCMake Error at CMakeLists.txt:16 (amend_export_dependencies):
+  Unknown CMake command "amend_export_dependencies".
+
+[0m

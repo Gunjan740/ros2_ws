@@ -1,0 +1,27 @@
+[0.493s] Invoking command in '/home/gunjan/ros2_ws/build/my_py_pkg': AMENT_PREFIX_PATH=/home/gunjan/ros2_ws/install/my_robot_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gunjan/ros2_ws/install/my_robot_interfaces LD_LIBRARY_PATH=/home/gunjan/ros2_ws/install/my_robot_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/gunjan/ros2_ws/build/my_py_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gunjan/ros2_ws/install/my_py_pkg/lib/python3.10/site-packages:/home/gunjan/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/gunjan/ros2_ws/build/my_py_pkg/build --no-deps symlink_data --force
+[0.676s] running develop
+[0.785s] running egg_info
+[0.785s] writing my_py_pkg.egg-info/PKG-INFO
+[0.785s] writing dependency_links to my_py_pkg.egg-info/dependency_links.txt
+[0.785s] writing entry points to my_py_pkg.egg-info/entry_points.txt
+[0.785s] writing requirements to my_py_pkg.egg-info/requires.txt
+[0.785s] writing top-level names to my_py_pkg.egg-info/top_level.txt
+[0.787s] reading manifest file 'my_py_pkg.egg-info/SOURCES.txt'
+[0.787s] writing manifest file 'my_py_pkg.egg-info/SOURCES.txt'
+[0.788s] running build_ext
+[0.788s] Creating /home/gunjan/ros2_ws/install/my_py_pkg/lib/python3.10/site-packages/my-py-pkg.egg-link (link to .)
+[0.789s] Installing add_two_ints_client script to /home/gunjan/ros2_ws/install/my_py_pkg/lib/my_py_pkg
+[0.789s] Installing add_two_ints_client_no_oop script to /home/gunjan/ros2_ws/install/my_py_pkg/lib/my_py_pkg
+[0.789s] Installing add_two_ints_server script to /home/gunjan/ros2_ws/install/my_py_pkg/lib/my_py_pkg
+[0.789s] Installing hw_status_publisher script to /home/gunjan/ros2_ws/install/my_py_pkg/lib/my_py_pkg
+[0.789s] Installing number_counter script to /home/gunjan/ros2_ws/install/my_py_pkg/lib/my_py_pkg
+[0.789s] Installing number_publisher script to /home/gunjan/ros2_ws/install/my_py_pkg/lib/my_py_pkg
+[0.789s] Installing py_node script to /home/gunjan/ros2_ws/install/my_py_pkg/lib/my_py_pkg
+[0.789s] Installing robot_news_station script to /home/gunjan/ros2_ws/install/my_py_pkg/lib/my_py_pkg
+[0.789s] Installing smartphone script to /home/gunjan/ros2_ws/install/my_py_pkg/lib/my_py_pkg
+[0.790s] 
+[0.790s] Installed /home/gunjan/ros2_ws/build/my_py_pkg
+[0.790s] running symlink_data
+[0.790s] symbolically linking /home/gunjan/ros2_ws/build/my_py_pkg/resource/my_py_pkg -> /home/gunjan/ros2_ws/install/my_py_pkg/share/ament_index/resource_index/packages
+[0.790s] symbolically linking /home/gunjan/ros2_ws/build/my_py_pkg/package.xml -> /home/gunjan/ros2_ws/install/my_py_pkg/share/my_py_pkg
+[0.810s] Invoked command in '/home/gunjan/ros2_ws/build/my_py_pkg' returned '0': AMENT_PREFIX_PATH=/home/gunjan/ros2_ws/install/my_robot_interfaces:${AMENT_PREFIX_PATH} CMAKE_PREFIX_PATH=/home/gunjan/ros2_ws/install/my_robot_interfaces LD_LIBRARY_PATH=/home/gunjan/ros2_ws/install/my_robot_interfaces/lib:${LD_LIBRARY_PATH} PYTHONPATH=/home/gunjan/ros2_ws/build/my_py_pkg/prefix_override:/usr/lib/python3/dist-packages/colcon_core/task/python/colcon_distutils_commands:/home/gunjan/ros2_ws/install/my_py_pkg/lib/python3.10/site-packages:/home/gunjan/ros2_ws/install/my_robot_interfaces/local/lib/python3.10/dist-packages:${PYTHONPATH} /usr/bin/python3 -W ignore:setup.py install is deprecated -W ignore:easy_install command is deprecated setup.py develop --editable --build-directory /home/gunjan/ros2_ws/build/my_py_pkg/build --no-deps symlink_data --force
