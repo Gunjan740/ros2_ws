@@ -5,14 +5,35 @@ import rclpy
 import random
 from rclpy.node import Node
 from turtlesim.srv import Spawn
+from my_robot_interfaces.msg import Turtle
+from my_robot_interfaces.msg import TurtleArray
+from my_robot_interfaces.srv import CatchTurtle
+from turtlesim.srv import Kill
 
 
 class TurtleSpawner(Node):  
     def __init__(self):
         super().__init__("turtle_spawner") 
-        self.turtle_name_prefix_ = "turtle" 
+        self.declare_parameter("spawn_frequency", 1.0)
+        self.declare_parameter("turtle_name_prefix", "turtle")
+        self.spawn_frequency_ = self.get_parameter("spawn_frequency").value
+        self.turtle_name_prefix_ = self.get_parameter("turtle_name_prefix").value 
         self.turtle_counter_ = 0
-        self.spawn_turtle_timer_ = self.create_timer(2.0, self.spawn_new_turtle)
+        self.alive_turtles_ = []
+        self.alive_turtles_publisher_ = self.create_publisher(TurtleArray, "alive_turtles",10)
+        self.spawn_turtle_timer_ = self.create_timer(1.0 / self.spawn_frequency_, self.spawn_new_turtle)
+        self.catch_turtle_service_ = self.create_service(CatchTurtle, "catch_turtle", self.callback_catch_turtle)
+
+    def callback_catch_turtle(self, request, response):
+        self.call_kill_server(request.name)
+        response.success = True
+        return response 
+
+
+    def publish_alive_turtles(self):
+        msg = TurtleArray()
+        msg.turtles =  self.alive_turtles_
+        self.alive_turtles_publisher_.publish(msg)   
 
     def spawn_new_turtle(self):
         self.turtle_counter_ += 1
@@ -42,6 +63,38 @@ class TurtleSpawner(Node):
             response = future.result()
             if response.name != "":
                 self.get_logger().info("Turtle " + response.name + " is now alive.")
+                new_turtle = Turtle()
+                new_turtle.name = response.name
+                new_turtle.x = x
+                new_turtle.y = y
+                new_turtle.theta = theta
+                self.alive_turtles_.append(new_turtle)
+                self.publish_alive_turtles()
+
+        except Exception as e:
+            self.get_logger().error("Service call failed %r"%(e,))    
+
+
+    def call_kill_server(self, turtle_name):
+        client = self.create_client(Kill, "kill")
+        while not client.wait_for_service(1.0):
+            self.get_logger().warn("Waiting for server ....") 
+
+        request = Kill.Request()
+        request.name = turtle_name
+
+        future = client.call_async(request)
+        future.add_done_callback(partial(self.callback_call_kill,turtle_name= turtle_name))
+
+    def callback_call_kill(self, future, turtle_name):
+        try:
+        
+            future.result()
+            for(i, turtle) in enumerate(self.alive_turtles_):
+                if turtle.name == turtle_name:
+                    del self.alive_turtles_[i]
+                    self.publish_alive_turtles()
+                    break
 
         except Exception as e:
             self.get_logger().error("Service call failed %r"%(e,))    
